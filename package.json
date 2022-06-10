@@ -1,0 +1,30 @@
+{
+  "name": "user-management-system",
+  "version": "1.0.0",
+  "description": "Basic user management system",
+  "main": "index.js",
+  "scripts": {
+    "serve-local": "serverless offline start",
+    "dev": "nodemon --exec \"serverless offline start\"",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DocSpectre/user-management-system.git"
+  },
+  "author": "DocSpectre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DocSpectre/user-management-system/issues"
+  },
+  "homepage": "https://github.com/DocSpectre/user-management-system#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "serverless-http": "^3.0.1"
+  },
+  "devDependencies": {
+    "jest": "^28.1.1",
+    "serverless-offline": "^8.8.0"
+  }
+}

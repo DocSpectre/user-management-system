@@ -1,0 +1,18 @@
+org: docspectre
+app: user-management-system
+service: user-management-system
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+
+functions:
+  api:
+    handler: handler.hello
+    events:
+      - httpApi: '*'
+
+#run serverless in localmachine
+plugins:
+  - serverless-offline
