@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     session_key: DataTypes.STRING,
     session_status: DataTypes.STRING,
-    session_expire: DataTypes.datetime
+    session_expire: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'UserAuth',
