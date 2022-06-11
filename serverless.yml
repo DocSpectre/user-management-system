@@ -8,11 +8,41 @@ provider:
   runtime: nodejs14.x
 
 functions:
-  api:
-    handler: handler.hello
+  userCreate:
+    handler: api/users.create
+    description: Create new user
     events:
-      - httpApi: '*'
+      - http:
+          path: user/create
+          method: post
+  userEditUser:
+    handler: api/users.getAll
+    description: Get all registered users
+    events:
+      - http:
+          path: user/update
+          method: get
+  userDeleteUser:
+    handler: api/users.getAll
+    description: Get all registered users
+    events:
+      - http:
+          path: user/remove
+          method: get
+  userGetDetails:
+    handler: api/users.getAll
+    description: Get all registered users
+    events:
+      - http:
+          path: user/list
+          method: get
+
 
 #run serverless in localmachine
 plugins:
   - serverless-offline
+
+#remove serverless prefix '/dev' from url
+custom:
+  serverless-offline:
+    noPrependStageInUrl: true
