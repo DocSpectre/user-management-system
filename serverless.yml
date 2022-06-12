@@ -16,25 +16,55 @@ functions:
           path: user/create
           method: post
   userEditUser:
-    handler: api/users.getAll
-    description: Get all registered users
+    handler: api/users.update
+    description: Update a user
     events:
       - http:
-          path: user/update
-          method: get
-  userDeleteUser:
-    handler: api/users.getAll
-    description: Get all registered users
+          path: user/update/{id}
+          method: patch
+  # userDeleteUser:
+  #   handler: api/users.getAll
+  #   description: Get all registered users
+  #   events:
+  #     - http:
+  #         path: user/remove
+  #         method: get
+  userGetById:
+    handler: api/users.getById
+    description: Get user details by ID
     events:
       - http:
-          path: user/remove
+          path: user/{id}/getAll
           method: get
-  userGetDetails:
+  userGetUserList:
     handler: api/users.getAll
-    description: Get all registered users
+    description: Get user list
     events:
       - http:
           path: user/list
+          method: get
+
+          
+  roleCreate:
+    handler: api/roles.create
+    description: Create a role / usertype
+    events:
+      - http:
+          path: role/create
+          method: post
+  roleUpdate:
+    handler: api/roles.update
+    description: Update a role(usertype)
+    events:
+      - http:
+          path: role/update/{id}
+          method: patch
+  roleGetList:
+    handler: api/roles.getList
+    description: Get Role List
+    events:
+      - http:
+          path: role/list
           method: get
 
 
