@@ -1,4 +1,5 @@
 const { AuthController } = require('./controllers/AuthController');
+const utils = require('./helpers/utils');
 
 module.exports.signin = async (event, context, callback) => {
     const body = JSON.parse(event.body);
@@ -30,19 +31,18 @@ module.exports.signout = async (event, context, callback) => {
 };
 
 module.exports.authorize = async (event, context, callback) => {
-    const token = event.authorizationToken;
+    try {
+        const token = event.authorizationToken;
 
+        const decoded = await AuthController.verifyToken(token);
+        const effect = decoded.roleId === 1 ? 'Allow' : 'Deny';
+        const userId = decoded.userId;
+        const authorizerContext = { user: userId };
 
-    console.log('token.', token);
+        const policyDocument = utils.buildIAMPolicy(userId, effect, event.methodArn, authorizerContext);
 
-    const decoded = await AuthController.verifyToken(token);
-    console.log('decoded> ', decoded);
-    // const isAllowed = authorizeUser(user.scopes, event.methodArn);
-    const effect = 'Allow';
-    const userId = decoded.userId;
-
-
-    const policyDocument = utils.buildIAMPolicy(userId, effect, event.methodArn, authorizerContext);
-
-    callback(null, policyDocument);
+        callback(null, policyDocument);
+    } catch (error) {
+        callback('Unauthorized');
+    }
 };

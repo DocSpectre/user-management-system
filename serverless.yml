@@ -17,6 +17,7 @@ functions:
       - http:
           path: user/create
           method: post
+          authorizer: authorize
   userEditUser:
     handler: api/users.update
     description: Update a user
@@ -24,6 +25,7 @@ functions:
       - http:
           path: user/update/{id}
           method: patch
+          authorizer: authorize
   userGetById:
     handler: api/users.getById
     description: Get user details by ID
@@ -39,6 +41,7 @@ functions:
       - http:
           path: user/list
           method: get
+          authorizer: authorize
   userDeleteUser:
     handler: api/users.hardDelete
     description: Delete users
@@ -46,6 +49,7 @@ functions:
       - http:
           path: user/remove/{id}
           method: delete
+          authorizer: authorize
   userDeleteMultiUser:
     handler: api/users.hardDelete
     description: Delete multiple users
@@ -53,6 +57,7 @@ functions:
       - http:
           path: user/remove/
           method: delete
+          authorizer: authorize
 
           
   roleCreate:
@@ -62,6 +67,7 @@ functions:
       - http:
           path: role/create
           method: post
+          authorizer: authorize
   roleUpdate:
     handler: api/roles.update
     description: Update a role(usertype)
@@ -69,6 +75,7 @@ functions:
       - http:
           path: role/update/{id}
           method: patch
+          authorizer: authorize
   roleGetList:
     handler: api/roles.getList
     description: Get Role List
@@ -76,6 +83,7 @@ functions:
       - http:
           path: role/list
           method: get
+          authorizer: authorize
 
   userAuthenticate:
     handler: api/auth.signin

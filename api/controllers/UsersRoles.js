@@ -20,7 +20,7 @@ module.exports.UsersRolesController = {
     },
 
     async getUserRole(userId) {
-        const queryResult = await UserAuth.findAll({
+        const queryResult = await UsersRoles.findAll({
             where: {
                 userId
             }
