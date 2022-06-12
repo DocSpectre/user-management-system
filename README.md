@@ -12,12 +12,13 @@
 <h2></h2>
 <p>Built in NodeJS, running as an offline serverless module with the implementation of JWT Token for the authentication and authorization of users. Currently supported authentication role is 'Admin'</p>
 
+<p>Requirements: </p>
+<ul>
+<li>MySQL</li>
+<li>NodeJS version ^14</li>
+</ul>
+
 <h4>Instructions: To run the project in local machine</h4>
-Requirements: 
-MySQL as Database
-NodeJS version ^14
-
-
 <ol>
 <li>npm install -g serverless - For the Serverless CLI </li>
 <li><p>npm install - To install all dependency packages</p></li>
