@@ -1,7 +1,6 @@
 
 
 module.exports.parseSQLFindResult = (queryResult) => {
-    // console.log('Object  . ,', Object.keys);
     if (Array.isArray(queryResult)) {
         return queryResult.reduce((acc, curr) => {
             if (curr && curr.dataValues) {
@@ -13,4 +12,9 @@ module.exports.parseSQLFindResult = (queryResult) => {
         }, [])
     }
     return null;
+}
+
+module.exports.isValidArray = (array) => {
+    if (Array.isArray(array) && array.length > 0) return true;
+    return false;
 }

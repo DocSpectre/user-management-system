@@ -6,7 +6,7 @@ module.exports.create = async (event, context, callback) => {
 
     const result = await RolesController.createRole(body);
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
             message: 'Created Role!',
             result
@@ -21,7 +21,7 @@ module.exports.update = async (event, context, callback) => {
 
     const result = await RolesController.updateRole(parseInt(pathParams.id), body);
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
             message: 'Updated Role!',
             result
@@ -33,7 +33,7 @@ module.exports.update = async (event, context, callback) => {
 module.exports.getList = async (event, context, callback) => {
     const result = await RolesController.getRoleList();
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
             message: 'List all Roles!',
             result

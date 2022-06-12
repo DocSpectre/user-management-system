@@ -7,17 +7,24 @@ module.exports.UsersRolesController = {
             roleId,
             userId
         });
-        console.log('result: ', queryResult);
         return queryResult;
     },
 
-    async demoteUserRole(userRoleId) {
+    async removeUserRole(userRoleId) {
         const queryResult = await UsersRoles.destroy({
             where: {
                 id: userRoleId
             }
         });
-        console.log('result: ', queryResult);
+        return queryResult;
+    },
+
+    async getUserRole(userId) {
+        const queryResult = await UserAuth.findAll({
+            where: {
+                userId
+            }
+        });
         return queryResult;
     },
 };

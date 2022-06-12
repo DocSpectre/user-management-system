@@ -16,6 +16,12 @@ module.exports = {
       isEnabled: 1,
       createdAt: new Date(),
       updatedAt: new Date()
+    },
+    {
+      roles: 'User',
+      isEnabled: 1,
+      createdAt: new Date(),
+      updatedAt: new Date()
     }], {});
   },
 

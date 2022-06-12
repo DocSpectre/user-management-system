@@ -8,6 +8,8 @@ provider:
   runtime: nodejs14.x
 
 functions:
+  authorize:
+    handler: api/auth.authorize
   userCreate:
     handler: api/users.create
     description: Create new user
@@ -22,20 +24,14 @@ functions:
       - http:
           path: user/update/{id}
           method: patch
-  # userDeleteUser:
-  #   handler: api/users.getAll
-  #   description: Get all registered users
-  #   events:
-  #     - http:
-  #         path: user/remove
-  #         method: get
   userGetById:
     handler: api/users.getById
     description: Get user details by ID
     events:
       - http:
-          path: user/{id}/getAll
+          path: user/{id}
           method: get
+          authorizer: authorize
   userGetUserList:
     handler: api/users.getAll
     description: Get user list
@@ -43,6 +39,20 @@ functions:
       - http:
           path: user/list
           method: get
+  userDeleteUser:
+    handler: api/users.hardDelete
+    description: Delete users
+    events:
+      - http:
+          path: user/remove/{id}
+          method: delete
+  userDeleteMultiUser:
+    handler: api/users.hardDelete
+    description: Delete multiple users
+    events:
+      - http:
+          path: user/remove/
+          method: delete
 
           
   roleCreate:
@@ -66,6 +76,14 @@ functions:
       - http:
           path: role/list
           method: get
+
+  userAuthenticate:
+    handler: api/auth.signin
+    description: User signin
+    events:
+      - http:
+          path: user/signin
+          method: post
 
 
 #run serverless in localmachine

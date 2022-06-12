@@ -15,9 +15,6 @@ module.exports = {
     await queryInterface.bulkInsert('UserAuths', [{
       username: 'admin',
       password: '12341234@',
-      session_key: 'test',
-      session_status: 'valid',
-      session_expire: null,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});

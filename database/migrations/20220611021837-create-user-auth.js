@@ -14,16 +14,6 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      session_key: {
-        type: Sequelize.STRING
-      },
-      session_status: {
-        type: Sequelize.STRING
-      },
-      session_expire: {
-        type: Sequelize.DATE,
-        defaultValue: null
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

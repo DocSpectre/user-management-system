@@ -11,14 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      UserAuth.belongsTo(models.Users,
+        {
+          foreignKey: 'id'
+        });
     }
   }
   UserAuth.init({
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    session_key: DataTypes.STRING,
-    session_status: DataTypes.STRING,
-    session_expire: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'UserAuth',

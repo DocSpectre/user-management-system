@@ -6,7 +6,7 @@ module.exports.create = async (event, context, callback) => {
 
     const result = await UserController.createUser(body, 'User');
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
             message: 'Create user!',
             result
@@ -17,12 +17,12 @@ module.exports.create = async (event, context, callback) => {
 
 module.exports.getById = async (event, context, callback) => {
     const pathParams = event.pathParameters;
-
-    const result = await UserController.getUserById(pathParams.id);
+    const userIdArray = pathParams.id.split(',');
+    const result = await UserController.getUsersById(userIdArray);
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
-            message: 'Get user!',
+            message: 'Get user by id!',
             result
         }),
     };
@@ -33,9 +33,9 @@ module.exports.getById = async (event, context, callback) => {
 module.exports.getAll = async (event, context, callback) => {
     const result = await UserController.getUserList();
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
-            message: 'Get user!',
+            message: 'Get all user!',
             result
         }),
     };
@@ -48,9 +48,9 @@ module.exports.update = async (event, context, callback) => {
 
     const result = await UserController.updateUser(body, pathParams.id);
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
-            message: 'Get user!',
+            message: 'Update user!',
             result
         }),
     };
@@ -62,9 +62,9 @@ module.exports.softDelete = async (event, context, callback) => {
 
     const result = await UserController.softDeleteUserById(pathParams.id);
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
-            message: 'Get user!',
+            message: 'Soft delete user!',
             result
         }),
     };
@@ -73,12 +73,14 @@ module.exports.softDelete = async (event, context, callback) => {
 
 module.exports.hardDelete = async (event, context, callback) => {
     const pathParams = event.pathParameters;
+    const userIdArray = pathParams.id.split(',');
 
-    const result = await UserController.removeUserById(pathParams.id);
+    let result = await UserController.removeUserById(userIdArray);
+
     const response = {
-        statusCode: 200,
+        statusCode: result?.code || 200,
         body: JSON.stringify({
-            message: 'Get user!',
+            message: 'Hard delete user!',
             result
         }),
     };
