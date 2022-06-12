@@ -93,8 +93,11 @@ module.exports.AuthController = {
             attributes: ['id']
         });
         const [parsedObj] = helper.parseSQLFindResult(queryResult);
-        const usrRoleData = usrRoleCtrller.getUserRole(parsedObj.User.id);
-        return usrRoleData;
+        if (parsedObj) {
+            const usrRoleData = usrRoleCtrller.getUserRole(parsedObj.User.id);
+            return usrRoleData;
+        }
+        return null;
     },
 
     async signToken({ userId, roleId }) {
